@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "module": "CommonJS",
+    "outDir": "dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@packages/config": ["../../packages/config/src/index"],
+      "@packages/logger": ["../../packages/logger/src/index"]
+    },
+    "skipLibCheck": true
+  },
+  "include": [
+    "src/**/*"
+  ]
+}
