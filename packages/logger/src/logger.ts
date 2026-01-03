@@ -1,10 +1,30 @@
 import pino from 'pino';
 import { getContext } from './context';
+import { TraceContext } from '@packages/tracing';
+
+const isDevelopment = process.env.NODE_ENV === 'development';
 
 const logger = pino({
-  level: process.env.LOG_LEVEL || 'trace',
-  base: undefined,
+  level: process.env.LOG_LEVEL || 'info',
+  base: {
+    service: process.env.SERVICE_NAME,
+    env: process.env.NODE_ENV
+  },
   timestamp: pino.stdTimeFunctions.isoTime,
+  transport: isDevelopment ? {
+    target: 'pino-pretty',
+    options: {
+      colorize: true,
+      translateTime: 'SYS:standard',
+      ignore: 'pid,hostname',
+      singleLine: false
+    }
+  } : undefined,
+  mixin() {
+    return {
+      traceId: TraceContext.getTraceId()
+    };
+  },
   formatters: {
     log(object) {
       const ctx = getContext();

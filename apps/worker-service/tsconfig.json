@@ -8,8 +8,7 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "@packages/config": ["../../packages/config/src/index"],
-      "@packages/logger": ["../../packages/logger/src/index"]
+      "@packages/*": ["../../packages/*/src/index"]
     },
     "skipLibCheck": true
   },

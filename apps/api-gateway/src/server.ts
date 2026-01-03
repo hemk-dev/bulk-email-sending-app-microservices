@@ -1,7 +1,7 @@
 // services/api-gateway/src/server.ts
 import http from 'http';
 import { createApp } from './app';
-import { logTrace } from '@packages/logger';
+import { logInfo } from '@packages/logger';
 
 export function startServer(port: number) {
   const app = createApp();
@@ -9,6 +9,6 @@ export function startServer(port: number) {
   const server = http.createServer(app);
 
   server.listen(port, () => {
-    logTrace(`Server listening on port ${port}`);
+    logInfo(`Server listening on port ${port}`);
   });
 }

@@ -4,6 +4,15 @@
     "dev": {
       "cache": false
     },
+    "start:dev": {
+      "cache": false
+    },
+    "start:prod": {
+      "dependsOn": [
+        "build"
+      ],
+      "cache": false
+    },
     "build": {
       "dependsOn": [
         "^build"

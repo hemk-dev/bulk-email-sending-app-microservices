@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only src/main.ts",
-    "build": "tsc",
-    "start": "node dist/main.js"
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/main.js",
+    "start:dev": "node --watch --env-file=.env.development -r ts-node/register -r tsconfig-paths/register src/main.ts",
+    "start:prod": "node --env-file=.env.production dist/main.js"
   },
   "keywords": [],
   "author": "",
@@ -17,11 +19,15 @@
     "@packages/logger": "workspace:*",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "pg": "^8.16.3",
+    "typeorm": "^0.3.28"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
     "@types/node": "^25.0.3",
+    "@types/pg": "^8.16.0",
+    "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.9.3"
