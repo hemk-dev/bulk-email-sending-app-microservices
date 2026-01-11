@@ -1,6 +1,7 @@
 import { loadConfig } from '@packages/config';
 import { logInfo } from '@packages/logger';
-import { startServer } from './server';
+import "reflect-metadata";
+import { startServer } from './server.js';
 
 const config = loadConfig();
 

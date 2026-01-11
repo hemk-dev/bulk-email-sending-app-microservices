@@ -17,6 +17,7 @@
   "dependencies": {
     "@packages/config": "workspace:*",
     "@packages/logger": "workspace:*",
+    "@packages/tracing": "workspace:*",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.2.1"

@@ -1,5 +1,5 @@
 import http from 'http';
-import { createApp } from './app';
+import { createApp } from './app.js';
 import { logInfo } from '@packages/logger';
 
 export function startServer(port: number) {

@@ -4,6 +4,7 @@
   "scripts": {
     "build": "turbo run build",
     "build:f": "turbo run build --force",
+    "build:clean": "node scripts/clean.js",
     "dev": "turbo run dev",
     "start:dev": "turbo run start:dev",
     "start:prod": "turbo run start:prod",
