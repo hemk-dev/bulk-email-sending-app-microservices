@@ -1,6 +1,6 @@
 import http from 'http';
-import { createApp } from './app.js';
 import { logInfo } from '@packages/logger';
+import { createApp } from './app';
 
 export function startServer(port: number) {
   const app = createApp();

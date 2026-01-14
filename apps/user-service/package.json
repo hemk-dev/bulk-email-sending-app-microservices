@@ -9,9 +9,11 @@
     "start": "node dist/main.js",
     "start:dev": "node --watch --env-file=.env.development -r ts-node/register -r tsconfig-paths/register src/main.ts",
     "start:prod": "node --env-file=.env.production dist/main.js",
-    "migration:generate": "typeorm-ts-node-commonjs migration:generate",
-    "migration:run": "typeorm-ts-node-commonjs migration:run",
-    "migration:revert": "typeorm-ts-node-commonjs migration:revert"
+    "migration:generate": "typeorm-ts-node-commonjs migration:generate -d src/config/data-source.ts",
+    "migration:create": "typeorm-ts-node-commonjs migration:create -t src/config/data-source.ts",
+    "migration:run": "typeorm-ts-node-commonjs migration:run -d src/config/data-source.ts",
+    "migration:revert": "typeorm-ts-node-commonjs migration:revert -d src/config/data-source.ts",
+    "migration:show": "typeorm-ts-node-commonjs migration:show -d src/config/data-source.ts"
   },
   "keywords": [],
   "author": "",
@@ -19,15 +21,18 @@
   "type": "commonjs",
   "dependencies": {
     "@packages/config": "workspace:*",
+    "@packages/errors": "workspace:*",
     "@packages/logger": "workspace:*",
     "@packages/tracing": "workspace:*",
+    "axios": "^1.13.2",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
     "pg": "^8.16.3",
-    "reflect-metadata": "^0.2.2"
+    "reflect-metadata": "^0.2.2",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",

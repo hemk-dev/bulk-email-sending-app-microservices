@@ -1,6 +1,5 @@
 import { DataSource } from "typeorm";
 import { loadConfig } from "@packages/config";
-// import { User } from "src/shared/entities/user.entity";
 
 const config = loadConfig();
 
@@ -16,7 +15,7 @@ export const AppDataSource = new DataSource({
   logging: true,
 
   entities: ["src/shared/entities/*.entity.{ts,js}"],
-  migrations: ["../../migrations/*.{ts,js}"],
+  migrations: ["migrations/*.{ts,js}"],
 
   migrationsTableName: "user_migrations",
 });

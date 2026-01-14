@@ -18,6 +18,7 @@
     "@packages/config": "workspace:*",
     "@packages/logger": "workspace:*",
     "@packages/tracing": "workspace:*",
+    "axios": "^1.7.9",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.2.1"

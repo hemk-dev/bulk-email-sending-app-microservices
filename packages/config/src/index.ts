@@ -30,12 +30,25 @@ export function loadConfig() {
     'sync': Boolean(process.env.DB_SYNC)
   }
 
+  const saltRounds = Number(process.env.SALT_ROUNDS);
+  const jwtSecret = String(process.env.JWT_SECRET);
+
+  const serviceUrls = {
+    userService: process.env.USER_SERVICE_URL || 'http://localhost:5001',
+    campaignService: process.env.CAMPAIGN_SERVICE_URL || 'http://localhost:5002',
+    recipientService: process.env.RECIPIENT_SERVICE_URL || 'http://localhost:5003',
+    workerService: process.env.WORKER_SERVICE_URL || 'http://localhost:5004',
+  };
+
   return {
     port: Number(port),
     redisHost,
     redisPort,
     serviceName,
     database,
-    env
+    env,
+    saltRounds,
+    jwtSecret,
+    serviceUrls
   };
 }

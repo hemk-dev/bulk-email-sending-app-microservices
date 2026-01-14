@@ -1,21 +1,23 @@
 import express from 'express';
+import cors from 'cors';
 import { traceMiddleware } from './middlewares/trace.middleware';
+import { errorHandlerMiddleware } from '@packages/errors';
 import traceRoute from './routes/trace.route';
+import authRoute from './routes/auth.route';
+import userRoute from './routes/user.route';
+
 export function createApp() {
   const app = express();
 
-  // Core middlewares
+  app.use(cors());
   app.use(express.json());
 
-  // Trace must be FIRST
   app.use(traceMiddleware);
 
-// Logging
-//   app.use(requestLogger());
-
-// Routes
-//   app.use('/health', healthRouter);
+  app.use('/auth', authRoute);
+  app.use('/user', userRoute);
   app.use('/internal', traceRoute);
+  app.use(errorHandlerMiddleware);
 
   return app;
 }
