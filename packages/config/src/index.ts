@@ -32,12 +32,14 @@ export function loadConfig() {
 
   const saltRounds = Number(process.env.SALT_ROUNDS);
   const jwtSecret = String(process.env.JWT_SECRET);
+  const encryptionKey = process.env.ENCRYPTION_KEY;
 
   const serviceUrls = {
     userService: process.env.USER_SERVICE_URL || 'http://localhost:5001',
     campaignService: process.env.CAMPAIGN_SERVICE_URL || 'http://localhost:5002',
     recipientService: process.env.RECIPIENT_SERVICE_URL || 'http://localhost:5003',
     workerService: process.env.WORKER_SERVICE_URL || 'http://localhost:5004',
+    senderService: process.env.SENDER_SERVICE_URL || 'http://localhost:5005',
   };
 
   return {
@@ -49,6 +51,7 @@ export function loadConfig() {
     env,
     saltRounds,
     jwtSecret,
+    encryptionKey,
     serviceUrls
   };
 }

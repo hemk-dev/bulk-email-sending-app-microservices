@@ -10,11 +10,10 @@ export const RECIPIENT_SERVICE_CONSTANTS = {
   BASE_URL: config.serviceUrls.recipientService,
   
   ENDPOINTS: {
-    // Add recipient endpoints here as needed
-    // CREATE: `${config.serviceUrls.recipientService}/api/recipients`,
-    // GET_ALL: `${config.serviceUrls.recipientService}/api/recipients`,
-    // GET_BY_ID: (id: string) => `${config.serviceUrls.recipientService}/api/recipients/${id}`,
-    // UPDATE: (id: string) => `${config.serviceUrls.recipientService}/api/recipients/${id}`,
-    // DELETE: (id: string) => `${config.serviceUrls.recipientService}/api/recipients/${id}`,
+    CREATE_SINGLE: `${config.serviceUrls.recipientService}/api/recipients/single`,
+    CREATE_BULK: `${config.serviceUrls.recipientService}/api/recipients/bulk`,
+    GET_COUNT: (campaignId: string) => `${config.serviceUrls.recipientService}/api/recipients/count?campaignId=${campaignId}`,
+    GET_BATCH: (campaignId: string, limit: number, offset: number) => 
+      `${config.serviceUrls.recipientService}/api/recipients/batch?campaignId=${campaignId}&limit=${limit}&offset=${offset}`,
   },
 } as const;

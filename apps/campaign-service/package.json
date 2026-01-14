@@ -8,7 +8,12 @@
     "build": "tsc -p tsconfig.build.json",
     "start": "node dist/main.js",
     "start:dev": "node --watch --env-file=.env.development -r ts-node/register -r tsconfig-paths/register src/main.ts",
-    "start:prod": "node --env-file=.env.production dist/main.js"
+    "start:prod": "node --env-file=.env.production dist/main.js",
+    "migration:generate": "typeorm-ts-node-commonjs migration:generate -d src/config/data-source.ts",
+    "migration:create": "typeorm-ts-node-commonjs migration:create -t src/config/data-source.ts",
+    "migration:run": "typeorm-ts-node-commonjs migration:run -d src/config/data-source.ts",
+    "migration:revert": "typeorm-ts-node-commonjs migration:revert -d src/config/data-source.ts",
+    "migration:show": "typeorm-ts-node-commonjs migration:show -d src/config/data-source.ts"
   },
   "keywords": [],
   "author": "",
@@ -16,13 +21,19 @@
   "type": "commonjs",
   "dependencies": {
     "@packages/config": "workspace:*",
+    "@packages/errors": "workspace:*",
     "@packages/logger": "workspace:*",
+    "@packages/queue": "workspace:*",
+    "@packages/tracing": "workspace:*",
     "axios": "^1.7.9",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
+    "ioredis": "^5.3.2",
     "pg": "^8.16.3",
-    "typeorm": "^0.3.28"
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.28",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",

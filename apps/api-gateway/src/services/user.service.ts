@@ -5,7 +5,7 @@ import { USER_SERVICE_CONSTANTS } from '../shared/constants/user-service.constan
 import { TraceContext } from '@packages/tracing';
 
 export const userService = {
-  async getUserById(userId: number) {
+  async getUserById(userId: string) {
     try {
       logInfo('Calling user service to get user', { userId });
       
@@ -19,7 +19,7 @@ export const userService = {
       }
       
       const response = await axios.get(
-        USER_SERVICE_CONSTANTS.ENDPOINTS.GET_USER(userId.toString()),
+        USER_SERVICE_CONSTANTS.ENDPOINTS.GET_USER(userId),
         { headers }
       );
 
@@ -32,13 +32,11 @@ export const userService = {
         stack: error.stack,
       });
       
-      // Map Axios errors to appropriate exceptions
       if (axios.isAxiosError(error)) {
         throw mapAxiosErrorToException(error);
       }
       
-      // For unexpected errors, throw internal server error
-      throw new InternalServerErrorException('Failed to retrieve user information. Please try again later.');
+      throw new InternalServerErrorException('Failed to retrieve user information, Please try again later!');
     }
   },
 };

@@ -4,16 +4,9 @@ import { logInfo, logError } from '@packages/logger';
 
 const config = loadConfig();
 
-/**
- * Redis client singleton
- * Creates a single Redis connection instance for the application
- */
 class RedisClient {
   private client: Redis | null = null;
 
-  /**
-   * Get or create Redis client instance
-   */
   getClient(): Redis {
     if (!this.client) {
       this.client = new Redis({

@@ -11,6 +11,8 @@ services:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: Hem@2810
       POSTGRES_DB: email_system
+      TZ: Asia/Kolkata
+      PGTZ: Asia/Kolkata
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:

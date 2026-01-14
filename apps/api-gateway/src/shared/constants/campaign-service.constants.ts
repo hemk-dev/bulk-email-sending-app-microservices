@@ -10,11 +10,14 @@ export const CAMPAIGN_SERVICE_CONSTANTS = {
   BASE_URL: config.serviceUrls.campaignService,
   
   ENDPOINTS: {
-    // Add campaign endpoints here as needed
-    // CREATE: `${config.serviceUrls.campaignService}/api/campaigns`,
-    // GET_ALL: `${config.serviceUrls.campaignService}/api/campaigns`,
-    // GET_BY_ID: (id: string) => `${config.serviceUrls.campaignService}/api/campaigns/${id}`,
-    // UPDATE: (id: string) => `${config.serviceUrls.campaignService}/api/campaigns/${id}`,
-    // DELETE: (id: string) => `${config.serviceUrls.campaignService}/api/campaigns/${id}`,
+    CREATE: `${config.serviceUrls.campaignService}/campaign`,
+    GET_ALL: `${config.serviceUrls.campaignService}/campaign`,
+    GET_BY_ID: (id: string) => `${config.serviceUrls.campaignService}/campaign/${id}`,
+    UPDATE: (id: string) => `${config.serviceUrls.campaignService}/campaign/${id}`,
+    DELETE: (id: string) => `${config.serviceUrls.campaignService}/campaign/${id}`,
+    PREPARE: (id: string) => `${config.serviceUrls.campaignService}/campaign/${id}/prepare`,
+    START: (id: string) => `${config.serviceUrls.campaignService}/campaign/${id}/start`,
+    GET_STATUS: (id: string) => `${config.serviceUrls.campaignService}/campaign/${id}/status`,
+    GET_METRICS: (id: string) => `${config.serviceUrls.campaignService}/campaign/${id}/metrics`,
   },
 } as const;

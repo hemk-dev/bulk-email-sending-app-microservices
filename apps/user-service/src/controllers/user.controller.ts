@@ -28,7 +28,7 @@ export const userController = {
   getUser: asyncHandler(async (req: Request, res: Response) => {
     logInfo('Get user request received', { userId: req.params.id });
     
-    const userId = parseInt(req.params.id, 10);
+    const userId = req.params.id;
     
     const result = await userService.getUser(userId);
     

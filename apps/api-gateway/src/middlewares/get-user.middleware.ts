@@ -8,7 +8,7 @@ import {
 import { userService } from '../services/user.service';
 
 export interface UserObject {
-  id: number;
+  id: string;
   firstName: string;
   lastName: string;
   email: string;

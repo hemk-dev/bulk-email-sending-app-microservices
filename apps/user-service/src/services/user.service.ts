@@ -10,6 +10,9 @@ import { hashPassword, comparePassword } from '../shared/utils/password';
 import { signAccessToken } from '../shared/utils/jwt';
 import { RegisterUserDto, LoginUserDto } from '../shared/dto/user.dto';
 
+// UUID validation regex
+const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 export const userService = {
   async register(userData: RegisterUserDto) {
     try {
@@ -127,11 +130,11 @@ export const userService = {
     }
   },
 
-  async getUser(userId: number) {
+  async getUser(userId: string) {
     try {
       logInfo('Starting get user', { userId });
       
-      if (!userId || isNaN(userId)) {
+      if (!userId || !UUID_REGEX.test(userId)) {
         throw new BadRequestException('Invalid user ID');
       }
 

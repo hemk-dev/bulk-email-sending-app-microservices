@@ -1,31 +1,34 @@
-import { Worker } from 'bullmq';
-import { TraceContext } from '@packages/tracing';
-import { logInfo } from '@packages/logger';
 import { loadConfig } from '@packages/config';
+import { logInfo, logError } from '@packages/logger';
+import "reflect-metadata";
+import { AppDataSource } from './config/data-source';
+import { createEmailWorker } from './queue/email-queue.worker';
+import { initializeEncryptionUtil } from './shared/utils/encryption.util';
 
 const config = loadConfig();
 
-new Worker(
-  'email-queue',
-  async (job) => {
-    const { traceId, message } = job.data;
+// Initialize encryption util with config
+initializeEncryptionUtil(config.encryptionKey);
 
-    TraceContext.run(traceId, async () => {
-      logInfo('Worker received job', { message });
+logInfo('Bootstrapping Worker Service', {
+  service: config.serviceName,
+  env: config.env
+});
 
-      await simulateWork();
+/**
+ * Worker Service Main Entry Point
+ * Initializes database connection and starts the email queue worker
+ */
+AppDataSource.initialize()
+  .then(() => {
+    logInfo('Database connection established');
+    
+    // Create and start email worker after database connection is ready
+    const worker = createEmailWorker();
 
-      logInfo('Worker finished job');
-    });
-  },
-  {
-    connection: {
-      host: config.redisHost,
-      port: config.redisPort
-    }
-  }
-);
-
-async function simulateWork() {
-  return new Promise((resolve) => setTimeout(resolve, 20000));
-}
+    logInfo('Worker service started successfully');
+  })
+  .catch((error: Error) => {
+    logError('Database connection failed', { error });
+    process.exit(1);
+  });

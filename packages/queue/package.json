@@ -12,7 +12,9 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@packages/tracing": "workspace:*"
+    "@packages/tracing": "workspace:*",
+    "@packages/config": "workspace:*",
+    "bullmq": "^5.0.0"
   },
   "devDependencies": {
     "@types/node": "^25.0.3",
